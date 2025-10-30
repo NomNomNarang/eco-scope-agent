@@ -4,7 +4,18 @@ import { Badge } from "@/components/ui/badge";
 import { Trees, MapPin, CheckCircle, Clock } from "lucide-react";
 import { toast } from "sonner";
 
-const projects = [
+interface Project {
+  id: string;
+  name: string;
+  location: string;
+  type: string;
+  verified: boolean;
+  carbonOffset: string;
+  image: string;
+  status: "verified" | "pending" | "active";
+}
+
+const projects: Project[] = [
   {
     id: "1",
     name: "Sundarbans Mangrove Restoration",
@@ -37,7 +48,7 @@ const projects = [
   }
 ];
 
-const getStatusBadge = (status) => {
+const getStatusBadge = (status: Project["status"]) => {
   switch (status) {
     case "verified":
       return <Badge className="bg-success text-success-foreground gap-1"><CheckCircle className="h-3 w-3" /> Verified</Badge>;
@@ -49,7 +60,7 @@ const getStatusBadge = (status) => {
 };
 
 export const RestorationProjects = () => {
-  const handleViewDetails = (name) => {
+  const handleViewDetails = (name: string) => {
     toast.info(`Opening details for ${name}`, {
       description: "Loading project information and verification data...",
     });
