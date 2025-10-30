@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, ChevronRight, Sparkles } from "lucide-react";
+import { toast } from "sonner";
 
 interface Recommendation {
   id: string;
@@ -43,6 +44,12 @@ const getDifficultyColor = (difficulty: Recommendation["difficulty"]) => {
 };
 
 export const RecommendationsPanel = () => {
+  const handleEnable = (title: string) => {
+    toast.success(`${title} enabled!`, {
+      description: "Your carbon reduction workflow is now active.",
+    });
+  };
+
   return (
     <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50">
       <div className="mb-6 flex items-start justify-between">
@@ -79,7 +86,11 @@ export const RecommendationsPanel = () => {
                   <span className="text-sm font-medium text-primary">
                     Impact: {rec.impact}
                   </span>
-                  <Button size="sm" className="gap-1">
+                  <Button 
+                    size="sm" 
+                    className="gap-1"
+                    onClick={() => handleEnable(rec.title)}
+                  >
                     Enable
                     <ChevronRight className="h-4 w-4" />
                   </Button>

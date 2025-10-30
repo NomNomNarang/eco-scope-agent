@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Trees, MapPin, CheckCircle, Clock } from "lucide-react";
+import { toast } from "sonner";
 
 interface Project {
   id: string;
@@ -59,6 +60,12 @@ const getStatusBadge = (status: Project["status"]) => {
 };
 
 export const RestorationProjects = () => {
+  const handleViewDetails = (name: string) => {
+    toast.info(`Opening details for ${name}`, {
+      description: "Loading project information and verification data...",
+    });
+  };
+
   return (
     <Card className="p-6 bg-card/80 backdrop-blur-sm border-border/50">
       <div className="mb-6">
@@ -94,7 +101,12 @@ export const RestorationProjects = () => {
                 </div>
               </div>
               
-              <Button variant="outline" size="sm" className="w-full">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="w-full"
+                onClick={() => handleViewDetails(project.name)}
+              >
                 View Details
               </Button>
             </div>

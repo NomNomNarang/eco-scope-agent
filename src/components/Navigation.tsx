@@ -1,17 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Activity, Leaf, ShoppingBag, BookOpen, Settings, Menu } from "lucide-react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", active: true },
-    { icon: <Activity className="h-5 w-5" />, label: "Activity", active: false },
-    { icon: <Leaf className="h-5 w-5" />, label: "Projects", active: false },
-    { icon: <ShoppingBag className="h-5 w-5" />, label: "Marketplace", active: false },
-    { icon: <BookOpen className="h-5 w-5" />, label: "Learn", active: false },
-    { icon: <Settings className="h-5 w-5" />, label: "Settings", active: false },
+    { icon: <LayoutDashboard className="h-5 w-5" />, label: "Dashboard", path: "/" },
+    { icon: <Activity className="h-5 w-5" />, label: "Activity", path: "/activity" },
+    { icon: <Leaf className="h-5 w-5" />, label: "Projects", path: "/projects" },
+    { icon: <ShoppingBag className="h-5 w-5" />, label: "Marketplace", path: "/marketplace" },
+    { icon: <BookOpen className="h-5 w-5" />, label: "Learn", path: "/learn" },
+    { icon: <Settings className="h-5 w-5" />, label: "Settings", path: "/settings" },
   ];
 
   return (
@@ -32,12 +34,15 @@ export const Navigation = () => {
               {navItems.map((item) => (
                 <Button
                   key={item.label}
-                  variant={item.active ? "default" : "ghost"}
+                  variant={location.pathname === item.path ? "default" : "ghost"}
                   size="sm"
                   className="gap-2"
+                  asChild
                 >
-                  {item.icon}
-                  {item.label}
+                  <Link to={item.path}>
+                    {item.icon}
+                    {item.label}
+                  </Link>
                 </Button>
               ))}
             </div>
@@ -57,12 +62,16 @@ export const Navigation = () => {
               {navItems.map((item) => (
                 <Button
                   key={item.label}
-                  variant={item.active ? "default" : "ghost"}
+                  variant={location.pathname === item.path ? "default" : "ghost"}
                   size="sm"
                   className="w-full justify-start gap-2"
+                  asChild
+                  onClick={() => setIsOpen(false)}
                 >
-                  {item.icon}
-                  {item.label}
+                  <Link to={item.path}>
+                    {item.icon}
+                    {item.label}
+                  </Link>
                 </Button>
               ))}
             </div>
