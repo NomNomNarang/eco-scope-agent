@@ -3,15 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Lightbulb, ChevronRight, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
-interface Recommendation {
-  id: string;
-  title: string;
-  description: string;
-  impact: string;
-  difficulty: "easy" | "medium" | "hard";
-}
-
-const recommendations: Recommendation[] = [
+const recommendations = [
   {
     id: "1",
     title: "Enable Smart Email Scheduling",
@@ -35,7 +27,7 @@ const recommendations: Recommendation[] = [
   }
 ];
 
-const getDifficultyColor = (difficulty: Recommendation["difficulty"]) => {
+const getDifficultyColor = (difficulty) => {
   switch (difficulty) {
     case "easy": return "text-success";
     case "medium": return "text-warning";
@@ -44,7 +36,7 @@ const getDifficultyColor = (difficulty: Recommendation["difficulty"]) => {
 };
 
 export const RecommendationsPanel = () => {
-  const handleEnable = (title: string) => {
+  const handleEnable = (title) => {
     toast.success(`${title} enabled!`, {
       description: "Your carbon reduction workflow is now active.",
     });

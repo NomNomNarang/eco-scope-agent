@@ -1,16 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Mail, Cloud, Video, FileText, TrendingDown } from "lucide-react";
 
-interface Activity {
-  id: string;
-  type: "email" | "cloud" | "video" | "document";
-  title: string;
-  emissions: string;
-  timestamp: string;
-  reduction?: string;
-}
-
-const activities: Activity[] = [
+const activities = [
   {
     id: "1",
     type: "email",
@@ -45,7 +36,7 @@ const activities: Activity[] = [
   }
 ];
 
-const getIcon = (type: Activity["type"]) => {
+const getIcon = (type) => {
   const iconClass = "h-5 w-5";
   switch (type) {
     case "email": return <Mail className={iconClass} />;

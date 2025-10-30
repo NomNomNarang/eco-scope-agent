@@ -2,16 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Trophy, Star, Target, Zap, Leaf } from "lucide-react";
 
-interface BadgeItem {
-  id: string;
-  name: string;
-  description: string;
-  icon: React.ReactNode;
-  earned: boolean;
-  progress?: number;
-}
-
-const badges: BadgeItem[] = [
+const badges = [
   {
     id: "1",
     name: "First Step",

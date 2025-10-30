@@ -1,15 +1,7 @@
 import { Leaf, Award, TrendingDown, Zap } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
-interface StatCardProps {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  trend?: string;
-  trendPositive?: boolean;
-}
-
-const StatCard = ({ icon, label, value, trend, trendPositive }: StatCardProps) => (
+const StatCard = ({ icon, label, value, trend, trendPositive }) => (
   <Card className="p-6 transition-all duration-300 hover:shadow-glow border-border/50 bg-card/80 backdrop-blur-sm">
     <div className="flex items-start justify-between">
       <div className="flex-1">
